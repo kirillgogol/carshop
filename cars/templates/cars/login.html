@@ -1,0 +1,35 @@
+{% extends "cars/base.html" %}
+
+{% block content %}
+<div class="page">
+    <div class="sign-in-container">
+        <div class="left">
+            <div align="center" class="sign-in">{{ title }}</div>
+            {% if title == "Sign in" %}
+            <div class="no-ac" align="center">Don't have an account?</div>
+            <div class="ref" align="center"><a href="{% url 'register' %}">Sign up</a></div>
+            {% else %}
+            <div class="no-ac" align="center">Already have an account?</div>
+            <div class="ref" align="center"><a href="{% url 'login' %}">Sign in</a></div>
+            {% endif %}
+        </div>
+        <div class="right">
+        <form method="post" class="form">
+            {% csrf_token %}
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in form %}
+
+            <label for="{{f.id_for_label}}">{{f.label}}</label> {{f}}
+            
+            {% endfor %}
+            {% if title == "Sign in" %}
+            <button type="submit">Sign in</button>
+            {% else %}
+            <button type="submit">Sign up</button>
+            {% endif %}
+            
+        </form>
+        </div>
+    </div>
+</div>                        
+{% endblock %}

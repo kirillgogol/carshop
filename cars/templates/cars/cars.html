@@ -1,0 +1,31 @@
+{% extends "cars/base.html" %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        {% block content %}
+        {% if cars_list %}
+        <ul class="cards-grid">
+            {% for car in cars_list %}
+                <div class="cart" onclick="window.location=`{% url 'detail' car.id %}`">
+                    <p>
+                        <div align="center" class="name-car">{{ car.brand }} {{ car.car_model }}</div>
+                    </p>
+                    <div class="car-photo"><img src="{{ car.photo.url }}"></div>
+                    <p>
+                        <div class="cost">{{ car.cost }}$
+                        <a href="{% url 'login' %}" class="button">Buy</a></div>
+                    </p>
+                </div>
+        {% endfor %}
+        </ul>
+        {% else %}
+            <h1 align="center">No cars are available.</h1>
+        {% endif %}
+
+        {% endblock %}
+    </body>
+</html>

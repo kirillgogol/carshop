@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link type="text/css" href="{% static 'cars/css/style.css' %}" rel="stylesheet">
+        <link type="image/x-icon" href="{% static 'cars/images/logo3.png' %}" rel="icon">
+        <title>Home</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+
+            </header>
+            <main>
+                {% block content %}  
+                    {% if request.user.is_authenticated and request.user.is_staff == False %}
+                    <div>
+                    <p>Glad to see you on our carshop, {{ user.username }}!</p>
+                    Let's visit our <a href="{% url 'cars' %}">car catalog</a>!<br>   
+                    </div>
+                    {% else %}
+        
+                    <p>Glad to see you on our carshop!</p>
+                    <p>Choose the way to continue:</p>
+                    <p><a href="{% url 'login' %}">Log in</a></p>
+                    <p><a href="{% url 'register' %}">Registration</a></p>
+                    <p><a href="{% url 'cars' %}">Continue</a> without authorization</p>
+        
+                    {% endif %}          
+                    
+                {% endblock %}
+                </main>
+                <footer>
+                    Copyright &copy; 2022 Carshop Store All Rights Reserved
+                </footer>
+        </div>
+    </body>
+    
+</html>

@@ -1,0 +1,64 @@
+{% extends "cars/base.html" %}
+
+
+{% block content %}
+
+    <div class="detail-car-name" align="center">{{ car.brand }} {{ car.car_model }}</div>
+    <div class="detail-container">
+        <div class="photo-container">
+            <img src="{{ car.photo.url }}">      
+
+            {% if car.photo == "photos/car.png" %}
+            <p>Car photo is not available now.</p>
+            {% endif %}
+        </div>
+        <div class="spec-container">
+
+            {% if car.techspec_set.count == 0 %}
+            <br> <b>No any specifications now.</b> <br>
+            {% endif %}
+
+            {% for tech in car.techspec_set.all %}   
+            <b>Color:</b> {{ car.color }}<br>
+            <b>Year:</b> {{ car.year }}<br>
+            <b>Weight:</b> {{ tech.weight }}<br>
+            <b>Wheel drive:</b> {{ tech.wheel_drive_type }}<br>
+            <b>Hourse powers:</b> {{ tech.hp }}<br>
+            <b>Cost:</b> {{ car.cost }}$<br><br><br><br><br>
+            {% endfor %} 
+
+            <a href="{% url 'login' %}" class="button-buy">Buy</a>
+        </div>
+    </div>
+
+
+{% if request.user.is_authenticated and request.user.is_staff == False %}
+<br><br><h3>Write your comment here</h3>
+
+<form method="post" class="form-comment">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in form %}
+
+            <br><br><label for="{{f.id_for_label}}">{{f.label}}</label><br> {{f}}
+            
+            {% endfor %}
+    <br><br><button type="submit">Send</button>            
+</form>
+{% else %}
+<br><br><h5>Please, <a href="{% url 'login' %}">log in</a> to leave the comment</h5>   
+{% endif %}
+
+<br><br><h5>Comments about this car ({{ car.comment_set.count }}):</h5>
+
+{% for c in car.comment_set.all %}
+
+{% if c.active == True %}
+<br>{{ c.user }}: {{ c.body }}
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

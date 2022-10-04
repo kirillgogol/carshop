@@ -1,0 +1,82 @@
+.detail-car-name{
+    font-size: 50px;
+    font-family: sans-serif;
+    color:brown;
+    text-shadow: 2px 1px 1px black;
+}
+
+.detail-container{
+    
+    margin-left: 170px;
+    margin-top: 40px;
+    height: 400px;
+    width: 75%;
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+}
+
+.spec-container{
+    height: 100%;
+    width: 30%;
+    font-size: 25px;
+    font-family: sans-serif;
+    margin-top: 40px;
+    color: #720086;
+    text-shadow: 1px 1px 1px black;
+}
+
+.spec-container b{
+    margin-left: 40px;
+    font-weight: bold;
+}
+
+.spec-container .button-buy {
+    background: transparent;
+    color: black;
+    font-size: 24px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    text-decoration: none;
+    font-family: sans-serif;
+    margin-left: 20px;
+}
+
+.spec-container .button-buy:hover{
+    background: #dbdbdb;
+}
+
+.photo-container{
+    height: 100%;
+    width: 70%;
+    float:right;
+    align-items: center;
+}
+.photo-container img{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.form-comment{
+    margin-left:100px;
+}
+
+.form-body{
+    height: 100px;
+    width: 350px;
+}
+
+.form-header{
+    width: 350px;
+}
+
+.form-comment button {
+    width: 70px;
+    border-radius: 7px;
+    height: 25px;
+    color: black;
+    background: beige;
+    font-size: 16px;
+    font-family: sans-serif;
+}

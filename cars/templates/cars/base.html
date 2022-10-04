@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ title }}</title>
+        <link type="text/css" href="{% static 'cars/css/style.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'cars/css/login.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'cars/css/detail.css' %}" rel="stylesheet">
+        <link type="image/x-icon" href="{% static 'cars/images/logo3.png' %}" rel="icon">
+    </head>
+    <body color="beidge">
+        <div class="wrapper">
+            <header>
+                <div class="navbar">
+
+                    {% if request.user.is_authenticated and request.user.is_staff == False %}
+                    <a>{{ user.username }}</a>
+                    {% for m in menu %}
+            
+                    <a href="{% url m.url_name %}">{{ m.title }}</a>
+            
+                    {% endfor %} 
+                    <a href="{% url 'logout' %}"> Log out</a>   
+                   
+            
+                    
+                    {% else %}
+                        {% for m in menu %}
+            
+                        <a href="{% url m.url_name %}">{{ m.title }}</a>
+            
+                        {% endfor %} 
+
+                    <a href="{% url 'register' %}">Sign up</a>
+                    <a href="{% url 'login' %}"> Sign in</a>
+                    
+                    {% endif %}
+                </div>
+            </header>
+            <main>
+            {% block content %}
+            {% endblock %}
+            </main>
+            <footer>
+                Copyright &copy; 2022 Carshop Store All Rights Reserved
+            </footer>
+        </div>
+    </body>
+            
+        
+</html>
